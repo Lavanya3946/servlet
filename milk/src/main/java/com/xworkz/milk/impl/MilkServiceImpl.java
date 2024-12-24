@@ -11,7 +11,7 @@ public class MilkServiceImpl implements MilkService {
     @Override
     public boolean service(MilkFormDto dto) {
         System.out.println("saved");
-        milkRepo.save();
+        milkRepo.save(dto);
         return true;
     }
 

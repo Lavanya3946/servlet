@@ -21,7 +21,7 @@ public class MuseumTicketServlet extends HttpServlet {
         String customerName = req.getParameter("customerName");
         int totalAdultMembers = Integer.parseInt(req.getParameter("totalAdultMembers"));
         int totalChildMembers = Integer.parseInt(req.getParameter("totalChildMembers"));
-        String mobileNo = req.getParameter("mobileNo");
+        long mobileNo = Long.parseLong(req.getParameter("mobileNo"));
         String email = req.getParameter("email");
         String invalid="name starts with upper case and email should contains @gmail.com";
 

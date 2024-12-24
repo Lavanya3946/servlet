@@ -10,7 +10,7 @@ public class MuseumServiceImpl implements MuseumService {
     @Override
     public boolean service(MuseumTicketFormDto dto) {
         System.out.println("saved ");
-        museumRepo.save();
+        museumRepo.save(dto);
         return  true;
     }
 }

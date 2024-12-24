@@ -12,7 +12,7 @@ public class SweetServiceImpl implements SweetService {
     @Override
     public boolean Service(SweetFormDto dto) {
         System.out.println(" saved in sweetServiceImpl");
-        sweetRepo.save();
+        sweetRepo.save(dto);
         return true;
 
     }

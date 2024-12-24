@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Museum Ticket Form</title>
+    <a href="index.jsp">click here for Index Page</a>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css">
     <style>
         body {
@@ -19,13 +20,83 @@
             font-size: 0.9em;
         }
     </style>
+    <script>
+        function validateForm() {
+            const customerName = document.getElementById("customerName").value.trim();
+            const totalAdultMembers = document.getElementById("totalAdultMembers").value;
+            const totalChildMembers = document.getElementById("totalChildMembers").value;
+            const mobileNo = document.getElementById("mobileNo").value.trim();
+            const email = document.getElementById("email").value.trim();
+            let isValid = true;
+
+            // Clear previous error messages
+            document.getElementById("customerNameError").innerText = "";
+            document.getElementById("totalAdultMembersError").innerText = "";
+            document.getElementById("totalChildMembersError").innerText = "";
+            document.getElementById("mobileNoError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+
+            // Validate customer name
+            if (customerName.length < 3 || customerName.length > 30) {
+                document.getElementById("customerNameError").innerText = "Customer name must be between 3 and 30 characters.";
+                isValid = false;
+            }
+
+            // Validate total adult members
+            if (totalAdultMembers < 0) {
+                document.getElementById("totalAdultMembersError").innerText = "Total adult members must be a positive number.";
+                isValid = false;
+            }
+
+            // Validate total child members
+            if (totalChildMembers < 0) {
+                document.getElementById("totalChildMembersError").innerText = "Total child members must be a positive number.";
+                isValid = false;
+            }
+
+            // Validate mobile number
+            if (mobileNo.test(mobileNo)) {
+                document.getElementById("mobileNoError").innerText = "Please enter a valid mobile number.";
+                isValid = false;
+            }
+
+            // Validate email
+            let emailPattern = email.indexOf("@");
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("ticketForm");
+            const submitBtn = document.getElementById("submitBtn");
+
+            form.addEventListener("input", function() {
+                const isValid = validateForm();
+                submitBtn.disabled = !isValid;
+            });
+
+            form.addEventListener("reset", function() {
+                // Clear validation state when the form is reset
+                submitBtn.disabled = true;
+                document.getElementById("customerNameError").innerText = "";
+                document.getElementById("totalAdultMembersError").innerText = "";
+                document.getElementById("totalChildMembersError").innerText = "";
+                document.getElementById("mobileNoError").innerText = "";
+                document.getElementById("emailError").innerText = "";
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container mt-5">
         <div class="row">
             <div class="col-8 form-container">
                 <h2 class="museum">Museum Ticket Form</h2>
-                <form action="TicketService" method="post" id="ticketForm">
+                <form action="TicketService" method="post" id="ticketForm" onsubmit="return validateForm()">
                     <div class="form-group">
                         <label for="customerName">Customer Name:</label>
                         <input type="text" id="customerName" name="customerName" class="form-control" required>
@@ -67,6 +138,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

@@ -1,25 +1,27 @@
 
 package com.xworkz.milk.dto;
 
+import java.time.LocalDate;
+
 public class CricketTournamentFormDto {
     private String tournamentName;
     private String organizerName;
     private String location;
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int totalTeams;
-    private String contactNumber;
+    private long contactNumber;
     private String email;
 
-    public CricketTournamentFormDto(String tournamentName, String organizerName, String location, String startDate, String endDate, int totalTeams, String contactNumber, String email) {
+    public CricketTournamentFormDto(String tournamentName, String organizerName, String location, LocalDate startDate, LocalDate endDate, int totalTeams, String contactNumber, String email) {
         this.tournamentName = tournamentName;
         this.organizerName = organizerName;
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
         this.totalTeams = totalTeams;
-        this.contactNumber = contactNumber;
-        this.email = email;
+        this.contactNumber = Long.parseLong(contactNumber);
+        this.email = String.valueOf(email);
     }
 
 
@@ -47,19 +49,19 @@ public class CricketTournamentFormDto {
         this.location = location;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -71,11 +73,11 @@ public class CricketTournamentFormDto {
         this.totalTeams = totalTeams;
     }
 
-    public String getContactNumber() {
+    public long getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(String contactNumber) {
+    public void setContactNumber(long contactNumber) {
         this.contactNumber = contactNumber;
     }
 

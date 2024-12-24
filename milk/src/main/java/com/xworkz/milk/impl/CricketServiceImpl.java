@@ -12,7 +12,7 @@ public class CricketServiceImpl implements CricketService {
     @Override
     public boolean service(CricketTournamentFormDto dto) {
         System.out.println("saved in serviceimpl");
-        cricketRepo.save();
+        cricketRepo.save(dto);
         return true;
     }
 }

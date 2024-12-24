@@ -4,10 +4,10 @@ public class MuseumTicketFormDto {
     private String customerName;
     private int totalAdultMembers;
     private int totalChildMembers;
-    private String mobileNo;
+    private long mobileNo;
     private String email;
 
-    public MuseumTicketFormDto(String customerName, int totalAdultMembers, int totalChildMembers, String mobileNo, String email) {
+    public MuseumTicketFormDto(String customerName, int totalAdultMembers, int totalChildMembers, long mobileNo, String email) {
         this.customerName = customerName;
         this.totalAdultMembers = totalAdultMembers;
         this.totalChildMembers = totalChildMembers;
@@ -40,11 +40,11 @@ public class MuseumTicketFormDto {
         this.totalChildMembers = totalChildMembers;
     }
 
-    public String getMobileNo() {
+    public long getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(String mobileNo) {
+    public void setMobileNo(long mobileNo) {
         this.mobileNo = mobileNo;
     }
 
@@ -54,5 +54,16 @@ public class MuseumTicketFormDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "MuseumTicketFormDto{" +
+                "customerName='" + customerName + '\'' +
+                ", totalAdultMembers=" + totalAdultMembers +
+                ", totalChildMembers=" + totalChildMembers +
+                ", mobileNo=" + mobileNo +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

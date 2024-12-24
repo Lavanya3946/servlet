@@ -1,5 +1,7 @@
 package com.xworkz.milk.repositary;
 
+import com.xworkz.milk.dto.SweetFormDto;
+
 public interface SweetRepo {
-    void save();
+    void save(SweetFormDto sweetFormDto);
 }

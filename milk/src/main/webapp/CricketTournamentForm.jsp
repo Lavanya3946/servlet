@@ -3,29 +3,127 @@
 <html>
 <head>
     <title>Cricket Tournament Form</title>
+    <a href="index.jsp">click here for Index Page</a>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css">
     <style>
         body {
             background-color: white;
         }
         .form-container {
-            background-color:red;
+            background-color: red;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 10px ;
+            box-shadow: 10px;
         }
         .error {
             color: red;
             font-size: 0.9em;
         }
     </style>
+    <script>
+        function validateForm() {
+            const tournamentName = document.getElementById("tournamentName").value.trim();
+            const organizerName = document.getElementById("organizerName").value.trim();
+            const location = document.getElementById("location").value.trim();
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+            const totalTeams = document.getElementById("totalTeams").value;
+            const contactNumber = document.getElementById("contactNumber").value.trim();
+            const email = document.getElementById("email").value.trim();
+            let isValid = true;
+
+            // Clear previous error messages
+            document.getElementById("tournamentNameError").innerText = "";
+            document.getElementById("organizerNameError").innerText = "";
+            document.getElementById("locationError").innerText = "";
+            document.getElementById("startDateError").innerText = "";
+            document.getElementById("endDateError").innerText = "";
+            document.getElementById("totalTeamsError").innerText = "";
+            document.getElementById("contactNumberError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+
+            // Validate tournament name
+            if (tournamentName.length <= 2 || tournamentName.length > 30) {
+                document.getElementById("tournamentNameError").innerText = "Tournament name must be between 3 and 30 characters.";
+                isValid = false;
+            }
+
+            // Validate organizer name
+            if (organizerName.length < 3 || organizerName.length > 30) {
+                document.getElementById("organizerNameError").innerText = "Organizer name must be between 3 and 30 characters.";
+                isValid = false;
+            }
+
+            // Validate location
+            if (location.length < 3 || location.length > 30) {
+                document.getElementById("locationError").innerText = "Location must be between 3 and 30 characters.";
+                isValid = false;
+            }
+
+            // Validate start date
+            if (startDate === "") {
+                document.getElementById("startDateError").innerText = "Please select a start date.";
+                isValid = false;
+            }
+
+            // Validate end date
+            if (endDate === "") {
+                document.getElementById("endDateError").innerText = "Please select an end date.";
+                isValid = false;
+            }
+
+            // Validate total teams
+            if (totalTeams <= 0) {
+                document.getElementById("totalTeamsError").innerText = "Total teams must be a positive number.";
+                isValid = false;
+            }
+
+            // Validate contact number
+            if (contactNumber.test(contactNumber)) {
+                document.getElementById("contactNumberError").innerText = "Please enter a valid 10-digit contact number.";
+                isValid = false;
+            }
+
+            // Validate email
+            let emailPattern = email.indexOf("@gmail.com");;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("tournamentForm");
+            const submitBtn = document.getElementById("submitBtn");
+
+            form.addEventListener("input", function() {
+                const isValid = validateForm();
+                submitBtn.disabled = !isValid;
+            });
+
+            form.addEventListener("reset", function() {
+                // Clear validation state when the form is reset
+                submitBtn.disabled = true;
+                document.getElementById("tournamentNameError").innerText = "";
+                document.getElementById("organizerNameError").innerText = "";
+                document.getElementById("locationError").innerText = "";
+                document.getElementById("startDateError").innerText = "";
+                document.getElementById("endDateError").innerText = "";
+                document.getElementById("totalTeamsError").innerText = "";
+                document.getElementById("contactNumberError").innerText = "";
+                document.getElementById("emailError").innerText = "";
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 form-container">
                 <h2 class="mb-4">Cricket Tournament Form</h2>
-                <form action="TournamentService" method="post" id="tournamentForm">
+                <form action="TournamentService" method="post" id="tournamentForm" onsubmit="return validateForm()">
                     <div class="form-group">
                         <label for="tournamentName">Tournament Name:</label>
                         <input type="text" id="tournamentName" name="tournamentName" class="form-control" required>
@@ -66,7 +164,7 @@
                         <input type="email" id="email" name="email" class="form-control" required>
                         <span id="emailError" class="error"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" >Submit</button>
                     <button type="reset" class="btn btn-secondary">Clear</button>
                 </form>
             </div>
@@ -81,6 +179,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="cricketForm.js"></script>
 </body>
 </html>
