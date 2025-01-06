@@ -1,6 +1,13 @@
 package com.xworkz.milk.dto;
 
+import lombok.*;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class MuseumTicketFormDto {
+    private  int id;
     private String customerName;
     private int totalAdultMembers;
     private int totalChildMembers;
@@ -13,57 +20,5 @@ public class MuseumTicketFormDto {
         this.totalChildMembers = totalChildMembers;
         this.mobileNo = mobileNo;
         this.email = email;
-    }
-
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public int getTotalAdultMembers() {
-        return totalAdultMembers;
-    }
-
-    public void setTotalAdultMembers(int totalAdultMembers) {
-        this.totalAdultMembers = totalAdultMembers;
-    }
-
-    public int getTotalChildMembers() {
-        return totalChildMembers;
-    }
-
-    public void setTotalChildMembers(int totalChildMembers) {
-        this.totalChildMembers = totalChildMembers;
-    }
-
-    public long getMobileNo() {
-        return mobileNo;
-    }
-
-    public void setMobileNo(long mobileNo) {
-        this.mobileNo = mobileNo;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "MuseumTicketFormDto{" +
-                "customerName='" + customerName + '\'' +
-                ", totalAdultMembers=" + totalAdultMembers +
-                ", totalChildMembers=" + totalChildMembers +
-                ", mobileNo=" + mobileNo +
-                ", email='" + email + '\'' +
-                '}';
     }
 }

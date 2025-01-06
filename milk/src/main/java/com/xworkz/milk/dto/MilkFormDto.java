@@ -2,17 +2,41 @@ package com.xworkz.milk.dto;
 
 public class MilkFormDto {
 
-
+    private int id;
     private String brand;
     private String type;
     private int quantity;
     private double total;
 
+    public MilkFormDto() {
+
+    }
+
     public MilkFormDto(String brand, String type, int quantity, double total) {
+        this.id = id;
         this.brand = brand;
         this.type = type;
         this.quantity = quantity;
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "MilkFormDto{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", type='" + type + '\'' +
+                ", quantity=" + quantity +
+                ", total=" + total +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBrand() {
@@ -46,14 +70,5 @@ public class MilkFormDto {
     public void setTotal(double total) {
         this.total = total;
     }
-
-    @Override
-    public String toString() {
-        return "MilkFormDto{" +
-                "brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", quantity=" + quantity +
-                ", totalPrice=" + total +
-                '}';
-    }
 }
+

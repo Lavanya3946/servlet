@@ -1,9 +1,8 @@
-<%@ page isELIgnored="false" %>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Cricket Tournament Form</title>
-    <a href="index.jsp">click here for Index Page</a>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css">
     <style>
         body {
@@ -119,6 +118,20 @@
     </script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <a class="navbar-brand" href="index.jsp">Cricket Tournament</a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+ <span class="navbar-toggler-icon">
+ </span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarNav">
+ <ul class="navbar-nav">
+ <li class="nav-item active">
+  <a class="nav-link" href="index.jsp">Index page <span class="sr-only">(current)</span></a>
+   </li>
+   </ul>
+   </nav>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 form-container">
@@ -171,8 +184,12 @@
             <div class="col-md-6">
                 <h2 class="text-center mt-4">Tournament Details</h2>
                 <div class="alert alert-info">
+
                     <h2>${message}</h2>
                 </div>
+                    <button type="submit" class="btn btn-secondary">  <a href="TournamentService">View All</a>
+</button>
+
             </div>
         </div>
     </div>

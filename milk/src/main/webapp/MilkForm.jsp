@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>Milk Form</title>
-    <a href="index.jsp">click here for Index Page</a>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -28,27 +27,52 @@
             if (brand.length < 3) {
                 document.getElementById("errormess").innerText = "Brand name must be at least 3 letters.";
                 isValid = false;
+            }else{
+                document.getElementById("errormess").innerText = "";
+
             }
+
 
             // Validate type
             if (type === "") {
                 document.getElementById("errortype").innerText = "Please select a type of milk needed.";
                 isValid = false;
+            }else{
+            document.getElementById("errortype").innerText="";
             }
 
             // Validate quantity
             if (quantity <= 0) {
                 document.getElementById("errornum").innerText = "Quantity can't be 0 or less.";
                 isValid = false;
+            }else{
+            document.getElementById("errornum").innerText="";
             }
+
 
             return isValid;
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="mt-5">Milk Order Form</h1>
+
+
+        <div class="accordion mt-4" id="accordionExample">
+         <div class="card">
+         <div class="card-header" id="headingOne">
+         <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Click here </button>
+           </h2>
+           </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+             <div class="card-body">
+              <a href="index.jsp" class="btn btn-primary">Want to go back click here I will take you</a>
+               </div>
+               </div>
+                </div>
+                <div class="container">
+                        <h1 class="mt-5">Milk Order Form</h1>
+                </div>
         <form action="MilkService" method="post" class="mt-4" id="milkForm" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="brand">Brand:</label>
@@ -78,6 +102,7 @@
             </div>
             <button type="submit" class="btn btn-primary" id="submitBtn">Cost of Milk</button>
             <button type="reset" class="btn btn-secondary">Clear</button>
+             <button type="button" class="btn btn-warning"><a href="MilkService">View All</a></button>
             <h2>${message}${order}</h2>
         </form>
     </div>

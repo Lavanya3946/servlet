@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>Museum Ticket Form</title>
-    <a href="index.jsp">click here for Index Page</a>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css">
     <style>
         body {
@@ -92,7 +91,13 @@
     </script>
 </head>
 <body>
-    <div class="container mt-5">
+
+                <div class="card mb-4">
+                 <div class="card-body text-center">
+                    <a href="index.jsp" class="btn btn-primary">Go to Index Page</a>
+                    </div>
+                     </div>
+<div class="container mt-5">
         <div class="row">
             <div class="col-8 form-container">
                 <h2 class="museum">Museum Ticket Form</h2>
@@ -124,9 +129,13 @@
                     </div>
                     <button type="submit" class="btn btn-primary" id="submitBtn" >Submit</button>
                     <button type="reset" class="btn btn-secondary">Clear</button>
-                </form>
+                    <button type="submit" class="btn btn-warning"> <a href="TicketService">View All</a>
+                     </button>
+
+                    </form>
             </div>
             <div class="col-4">
+
                 <h1>${message}</h1>
                 <h2 class="text-center"><u>Submission Status:</u></h2>
                 <div class="info">

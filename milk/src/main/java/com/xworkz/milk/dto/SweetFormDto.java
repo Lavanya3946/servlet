@@ -1,23 +1,36 @@
 package com.xworkz.milk.dto;
 
 
+
+
+
 public class SweetFormDto {
+    private  int id;
     private String shopName;
     private String sweetName;
     private boolean isSpecial;
     private int quantity;
     private double totalPrice;
 
-    public void SweetService(){
-
-    }
-
-    public SweetFormDto(String shopName, String sweetName, boolean isSpecial, int quantity, double totalPrice) {
+    public SweetFormDto(int id, String shopName, String sweetName, boolean isSpecial, int quantity, double totalPrice) {
+        this.id = id;
         this.shopName = shopName;
         this.sweetName = sweetName;
         this.isSpecial = isSpecial;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
+    }
+
+    public SweetFormDto() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getShopName() {
@@ -63,7 +76,8 @@ public class SweetFormDto {
     @Override
     public String toString() {
         return "SweetFormDto{" +
-                "shopName='" + shopName + '\'' +
+                "id=" + id +
+                ", shopName='" + shopName + '\'' +
                 ", sweetName='" + sweetName + '\'' +
                 ", isSpecial=" + isSpecial +
                 ", quantity=" + quantity +

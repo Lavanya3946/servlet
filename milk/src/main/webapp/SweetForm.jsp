@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>Sweet Order Form</title>
-    <a href="index.jsp">click here for Index Page</a>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css">
     <style>
@@ -14,6 +13,22 @@
             color: red;
             font-size: 0.9em;
         }
+
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f8f9fa;
+                }
+                h1 {
+                    margin-top: 20px;
+                }
+                .btn-custom {
+                    width: 200px;
+                    margin-bottom: 15px;
+                }
+                .navbar-brand img {
+                    max-height: 40px;
+                }
+
     </style>
     <script>
         function validateForm() {
@@ -67,9 +82,34 @@
         });
     </script>
 </head>
-<body>
+<body><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <img src="xworkzlogo.jpeg" alt="Xworkz Logo"> Xworkz
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="MilkForm.jsp">MilkForm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="SweetForm.jsp">SweetForm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="MuseumForm.jsp">MuseumForm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="CricketTournamentForm.jsp">CricketTournamentForm</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
     <div class="container">
         <div style="text-align:center"><h1>Sweet Order Form</h1></div><br><br>
+
         <form action="Sweet" method="post" class="mt-4" id="sweetForm" onsubmit="return validateForm()">
             <div class="form-floating">
                 <select id="shopName" name="shopName" class="form-control">
@@ -109,6 +149,9 @@
             </div><br><br>
             <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Calculate Total Cost</button>
             <button type="reset" class="btn btn-secondary">Clear</button>
+
+            <button type="submit" class="btn btn-info"> <a href="Sweet">View All</a></button>
+
             <h2 class="text-center"><span style="color:blue;">${message}</span></h2>
         </form>
     </div>

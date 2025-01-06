@@ -6,6 +6,7 @@ import com.xworkz.milk.impl.SweetServiceImpl;
 import com.xworkz.milk.service.MilkService;
 import com.xworkz.milk.service.SweetService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/Sweet", loadOnStartup = 1)
@@ -36,7 +38,7 @@ public class SweetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        String ShopName = req.getParameter("shopName");
+        String shopName = req.getParameter("shopName");
         String sweetName = req.getParameter("sweetName");
         boolean isSpecial = req.getParameter("isSpecial")!=null&& req.getParameter("isSpecial").equals("on");
         int quantity = Integer.parseInt(req.getParameter("quantity"));
@@ -44,14 +46,20 @@ public class SweetServlet extends HttpServlet {
 
 
         double normalPrice = map.get(sweetName);
-        double addPrice = normalPrice * quantity;
+        double price = normalPrice * quantity;
         if (isSpecial) {
-            addPrice += 30 * quantity;
+            price += 30 * quantity;
         }
-        SweetFormDto sweetFormDto = new SweetFormDto(ShopName, sweetName, isSpecial, quantity, addPrice);
-        req.setAttribute("sweetOrder", sweetFormDto);
+        SweetFormDto sweetFormDto=new SweetFormDto();
+        sweetFormDto.setQuantity(quantity);
+        sweetFormDto.setShopName(shopName);
+        sweetFormDto.setSweetName(sweetName);
+        sweetFormDto.setTotalPrice(price);
+        sweetFormDto.setSpecial(isSpecial);
 
-        sweetService.Service(sweetFormDto);
+        req.setAttribute("sweet Order", sweetFormDto);
+
+        sweetService.service(sweetFormDto);
         String message="Shop Name:"+sweetFormDto.getShopName()+ "<br>"+
                " Sweet Name:"+sweetFormDto.getSweetName()+ "<br>"+
                 "Special:"+sweetFormDto.isSpecial()+ "<br>"+
@@ -61,6 +69,18 @@ public class SweetServlet extends HttpServlet {
 
         req.setAttribute("message",message);
         req.getRequestDispatcher("SweetForm.jsp").forward(req, resp);
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<SweetFormDto> sweetRecords=this.sweetService.getAll();
+        System.out.println(sweetRecords);
+        req.setAttribute("list",sweetRecords);
+        RequestDispatcher requestDispatcher= req.getRequestDispatcher("SweetResult.jsp");
+        requestDispatcher.forward(req,resp);
+        System.out.println("list:"+sweetRecords);
+
 
     }
 }
